@@ -29,6 +29,8 @@
     ]
   },
   "dependencies": {
+    "@hapi/boom": "^7.4.3",
+    "@hapi/joi": "^15.1.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongodb": "^3.3.2"
