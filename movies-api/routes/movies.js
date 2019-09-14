@@ -8,6 +8,7 @@ const {
 } = require('../utils/schemas/movies');
 
 const validationHandler = require('../utils/middleware/validationHandler');
+const logHandler = require('../utils/middleware/logHandlers');
 
 function moviesApi(app) {
   const router = express.Router();
@@ -15,7 +16,7 @@ function moviesApi(app) {
 
   const moviesService = new MoviesService();
 
-  router.get('/', async function(req, res, next) {
+  router.get('/' , async function(req, res, next) {
     const { tags } = req.query;
     try {
       const movies = await moviesService.getMovies({ tags });
