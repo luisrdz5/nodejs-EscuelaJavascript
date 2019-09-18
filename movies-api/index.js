@@ -6,12 +6,16 @@ const moviesApi = require('./routes/movies.js');
 
 const { logErrors, errorHandler, wrapErrors } = require('./utils/middleware/errorHandlers')
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
-const { logHandler } = require('./utils/middleware/logHandlers.js');
+const morgan = require('morgan');
+const fs = require('fs')
+const path = require('path')
+const accessLogStream = fs.createWriteStream(path.join('./', 'access.log'), { flags: 'a' });
+const responseTime = require('response-time')
 
 app.use(express.json());
 //Saving logs 
-app.use(logHandler);
-
+app.use(morgan('combined', { stream: accessLogStream }));
+app.use(responseTime());
 //procesamos las rutas
 moviesApi(app);
 

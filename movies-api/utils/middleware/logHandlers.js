@@ -1,9 +1,17 @@
 const morgan = require('morgan');
+var fs = require('fs')
+var path = require('path')
 
 const logHandler = function(req, res, next) {
-  console.log('LOGGED');
-  console.log(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'));
-  console.log('LogueADO');
+
+  // create a write stream (in append mode)
+  var accessLogStream = fs.createWriteStream(path.join('./', 'access.log'), { flags: 'a' });
+  //morgan('combined', { stream: accessLogStream });
+ // morgan(function (tokens, req, res) {
+ //   console.log('Guardando log ...');
+ // })
+  accessLogStream.write('\n Se ha almacenado el log ')
+  
   next();
 };
 
