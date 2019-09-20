@@ -1,6 +1,6 @@
 const moviesMock = [
   {
-    id: 1,
+    id: '5d7ad1372a7de104a15cba5e',
     title: 'Avictor',
     year: 'Simoneschi',
     cover: 'http://dummyimage.com/130x235.png/5fa2dd/ffffff',
@@ -144,6 +144,9 @@ class MoviesServiceMock {
     return Promise.resolve(moviesMock);
   }
   async createMovie() {
+    return Promise.resolve(moviesMock[0]);
+  }
+  async getMovie() {
     return Promise.resolve(moviesMock[0]);
   }
 }
