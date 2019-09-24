@@ -2,11 +2,11 @@ const moviesMock = [
   {
     id: '5d7ad1372a7de104a15cba5e',
     title: 'Avictor',
-    year: 'Simoneschi',
+    year: 2012,
     cover: 'http://dummyimage.com/130x235.png/5fa2dd/ffffff',
     description:
-      'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.',
-    duration: 2052,
+      'Mauris enim  sapien quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.',
+    duration: 202,
     contentRating: 'R',
     source:
       'http://seattletimes.com/dis/parturient/montes/nascetur.html?ut=varius&nulla=ut&sed=blandit&accumsan=non&felis=interdum&ut=in&at=ante&dolor=vestibulum&quis=ante&odio=ipsum&consequat=primis&varius=in&integer=faucibus&ac=orci&leo=luctus&pellentesque=et&ultrices=ultrices&mattis=posuere&odio=cubilia&donec=curae&vitae=duis&nisi=faucibus&nam=accumsan&ultrices=odio&libero=curabitur&non=convallis&mattis=duis&pulvinar=consequat&nulla=dui&pede=nec&ullamcorper=nisi&augue=volutpat&a=eleifend&suscipit=donec&nulla=ut&elit=dolor&ac=morbi&nulla=vel&sed=lectus&vel=in&enim=quam&sit=fringilla&amet=rhoncus&nunc=mauris',
@@ -144,10 +144,19 @@ class MoviesServiceMock {
     return Promise.resolve(moviesMock);
   }
   async createMovie() {
-    return Promise.resolve(moviesMock[0]);
+    return Promise.resolve(moviesMock[0].id);
   }
   async getMovie() {
     return Promise.resolve(moviesMock[0]);
+  }
+  async updateMovie() {
+    return Promise.resolve(moviesMock[0].id);
+  }
+  async patchMovie() {
+    return Promise.resolve(moviesMock[0].id);
+  }
+  async deleteMovie() {
+    return Promise.resolve(moviesMock[0].id);
   }
 }
 
