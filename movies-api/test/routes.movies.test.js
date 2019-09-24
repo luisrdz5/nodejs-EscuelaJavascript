@@ -46,20 +46,6 @@ describe('routes - movies', function() {
             request.post('/api/movies')
             .type('json')
             .set("Content-Type", "application/json")
-            /*
-            .send({
-                "title": "Avictor",
-                "year": 2012,
-                "cover": "http://dummyimage.com/130x235.png/5fa2dd/ffffff",
-                "description":
-                "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris  tortor id nulla ultrices aliquet.",
-                "duration": 202,
-                "contentRating": "R",
-                "source":
-                "http://seattletimes.com/dis/parturient/montes/nascetur.html?ut=varius&nulla=ut&sed=blandit&accumsan=non&felis=interdum&ut=in&at=ante&dolor=vestibulum&quis=ante&odio=ipsum&consequat=primis&varius=in&integer=faucibus&ac=orci&leo=luctus&pellentesque=et&ultrices=ultrices&mattis=posuere&odio=cubilia&donec=curae&vitae=duis&nisi=faucibus&nam=accumsan&ultrices=odio&libero=curabitur&non=convallis&mattis=duis&pulvinar=consequat&nulla=dui&pede=nec&ullamcorper=nisi&augue=volutpat&a=eleifend&suscipit=donec&nulla=ut&elit=dolor&ac=morbi&nulla=vel&sed=lectus&vel=in&enim=quam&sit=fringilla&amet=rhoncus&nunc=mauris",
-                "tags": ["Horror|Mystery|Thriller", "Drama"]  
-            })
-            */
             .send({
                     "title": moviesMock[0].title,
                     "year": moviesMock[0].year,
@@ -136,4 +122,9 @@ describe('routes - movies', function() {
                 })
         });
     });
+    describe('GET /movies/notvalidmovie', function(){
+        it('should respond with status 400' , function(done){
+            request.get('/api/movies/notvalidmovie').expect(400,done)
+        });
+    })
 });
