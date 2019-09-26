@@ -1,0 +1,12 @@
+{
+  "name": "myvideo",
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
+  "env": {
+    "DB_USER": "@myvideo-db-user",
+    "DB_PASSWORD": "@myvideo-db-user",
+    "DB_HOST": "@myvideo-db-user",
+    "DB_NAME": "@myvideo-db-user"
+  }
+}
