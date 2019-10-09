@@ -21,5 +21,5 @@ class UsersService {
         });
         return createUserId;
     }
-}
+};
 module.exports UsersService;
