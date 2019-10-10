@@ -3,6 +3,7 @@ const app = express();
 
 const { config } = require('./config/index');
 const moviesApi = require('./routes/movies.js');
+const userMoviesApi = require('./routes/userMovies.js');
 
 const { logErrors, errorHandler, wrapErrors } = require('./utils/middleware/errorHandlers')
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
@@ -18,6 +19,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(responseTime());
 //procesamos las rutas
 moviesApi(app);
+userMoviesApi(app);
 
 // Catch 404
 app.use(notFoundHandler);

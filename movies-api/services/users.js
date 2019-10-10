@@ -22,4 +22,4 @@ class UsersService {
         return createUserId;
     }
 };
-module.exports UsersService;
+module.exports=UsersService;
