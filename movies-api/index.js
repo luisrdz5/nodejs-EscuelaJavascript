@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 
 const { config } = require('./config/index');
+
+const authApi = require('./routes/auth');
 const moviesApi = require('./routes/movies.js');
 const userMoviesApi = require('./routes/userMovies.js');
 
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(responseTime());
 //procesamos las rutas
+authApi(app);
 moviesApi(app);
 userMoviesApi(app);
 
