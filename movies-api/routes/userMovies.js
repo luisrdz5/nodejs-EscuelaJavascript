@@ -1,7 +1,6 @@
 const express = require('express');
 const passport = require('passport');
 
-
 const UserMoviesService = require('../services/userMovies');
 const validationHandler = require('../utils/middleware/validationHandler');
 const scopesValidationHandler = require('../utils/middleware/scopesValidationHandler');
@@ -56,12 +55,12 @@ function userMoviesApi(app) {
     } 
   });
 
-  router.delete('/userMovieId',  
+  router.delete('/:userMovieId',  
     passport.authenticate('jwt', { session: false }), 
     scopesValidationHandler(['delete:user-movies']),
     validationHandler({userMovieId: movieIdSchema}, 'params'), 
   async function(req, res, next){
-    const { userMovieId }= req.parama;
+    const { userMovieId }= req.params;
     try{
       const deletedUserMovieId = await userMoviesService.deleteUserMovie({
         userMovieId

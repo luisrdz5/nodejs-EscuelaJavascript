@@ -8,7 +8,7 @@ passport.use(
     new BasicStrategy(async function(email,password,cb){
         try{
             const { data, status } = await axios({
-                url: `${configapiUrl}/api/auth/sign-in`,
+                url: `${config.apiUrl}/api/auth/sign-in`,
                 method: 'post',
                 auth: {
                     password,
@@ -18,6 +18,7 @@ passport.use(
                     apiKeyToken: config.apiKeyToken
                 }
             });
+
             if(!data || status !== 200){
                 return cb(boom.unauthorized(), false);
             }

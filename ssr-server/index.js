@@ -4,7 +4,8 @@ const boom = require('@hapi/boom');
 const cookieParser = require('cookie-parser');
 const axios = require('axios');
 
-const { config } = require("./config");
+const { config } = require("./config/index");
+
 
 const app = express();
 
@@ -16,8 +17,6 @@ require('./utils/auth/strategies/basic');
 app.post("/auth/sign-in", async function(req, res, next) {
   passport.authenticate("basic", function(error, data){
     try{
-      console.log('ahi va el data');
-      console.log(data);
       if( error || !data){
         next(boom.unauthorized());
       }
@@ -32,7 +31,6 @@ app.post("/auth/sign-in", async function(req, res, next) {
           httpOnly: !config.dev,
           secure: !config.dev
         });
-        console.log('mandamos cookie');
         res.status(200).json(user);
       })
 
@@ -87,20 +85,19 @@ app.post("/user-movies", async function(req, res, next) {
 
 app.delete("/user-movies/:userMovieId", async function(req, res, next) {
   try {
-    const { userMoviId } = req.params;
+    const { userMovieId } = req.params;
     const { token } = req.cookies;
-
+    console.log(`${config.apiUrl}/api/user-movies/${userMovieId}`);
     const { data, status } = await axios({
       url: `${config.apiUrl}/api/user-movies/${userMovieId}`,
       headers: { Authorization: `Bearer ${token}`},
-      method: 'delete',
-      data: userMovie
+      method: 'delete'
     });
-
+    console.log(` data es: ${data} status es: ${status}`);
     if(status !== 200){
       return next(boom.badImplementation());
     }
-
+    console.log(` data es: ${data} status es: ${status}`);
     res.status(200).json(data);
   } catch(error) {
     next(error);
