@@ -39,6 +39,7 @@ function authApi(app) {
           if (!apiKey) {
             next(boom.unauthorized());
           }
+          
           const { _id: id, name, email} = user;
 
           const payload = {
