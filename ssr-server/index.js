@@ -1,5 +1,5 @@
 const express = require("express");
-const passport = require('passport');
+const passport = require("passport");
 const boom = require('@hapi/boom');
 const cookieParser = require('cookie-parser');
 const axios = require('axios');
@@ -24,7 +24,7 @@ app.post("/auth/sign-in", async function(req, res, next) {
       if( error || !data){
         next(boom.unauthorized());
       }
-
+      console.log(`aqui viene la respuesta:  ${req}`);
       req.login(data, { session: false }, async function(error){
         if (error) {
           next(error);
@@ -111,6 +111,7 @@ app.get("/auth/google-oauth", passport.authenticate("google-oauth", {
 
 app.get("/auth/google-oauth/callback", passport.authenticate("google-oauth", 
 { session: false }), function(req, res, next){
+  console.log(`aqui viene la respuesta:  ${req}`);
   if(!req.user){
     next(boom.unauthorized());
   }
