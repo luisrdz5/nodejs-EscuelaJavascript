@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const helmet = require("helmet");
 
 const { config } = require('./config/index');
 
@@ -16,6 +17,7 @@ const accessLogStream = fs.createWriteStream(path.join('./', 'access.log'), { fl
 const responseTime = require('response-time')
 
 app.use(express.json());
+app.use(helmet());
 //Saving logs 
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(responseTime());
