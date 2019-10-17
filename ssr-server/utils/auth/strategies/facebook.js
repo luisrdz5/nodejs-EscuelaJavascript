@@ -12,22 +12,29 @@ passport.use(new FacebookStrategy({
     callbackURL: "/auth/facebook/callback"
   },
   async function(accessToken, refreshToken, profile, done) {
-      const email = profile.email ? profile.email :`${profile.id}@facebook.com`;
-
-      const { data, status } = await axios({
-        url: `${config.apiUrl}/api/auth/sign-provider`,
-        method: "post",
-        data: {
-            name: profile.displayName,
-            email: email,
-            password: profile.id,
-            apiKeyToken: config.apiKeyToken
+    try {
+      const email =  profile.email
+      ?  profile.email
+      : `${profile.id}@facebook.com`
+        const { data, status } = await axios({
+          url: `${config.apiUrl}/api/auth/sign-provider`,
+          method: "post",
+          data: {
+              name: profile.displayName,
+              email: email,
+              password: profile.id,
+              apiKeyToken: config.apiKeyToken
+          }
+        });
+        if (!data || status !== 200) {
+          return done(boom.unauthorized(), false);
         }
-      });
-      if (!data || status !== 200) {
-        return cb(boom.unauthorized(), false);
-      }
+  
+        return done(null, data);
+  
 
-      return cb(null, data);
+    }catch(error){
+      return done(error);
+    }
   }
 ));
