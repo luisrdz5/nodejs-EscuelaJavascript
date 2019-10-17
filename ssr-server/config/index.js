@@ -9,7 +9,9 @@ const config = {
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
   twitterConsumerKey:process.env.TWITTER_CONSUMER_KEY,
   TwitterConsumerSecret:process.env.TWITTER_CONSUMER_SECRET,
-  sessionSecret:process.env.SESSION_SECRET
+  sessionSecret:process.env.SESSION_SECRET,
+  facebookClientId:process.env.FACEBOOK_CLIENT_ID,
+  facebookClientSecret:process.env.FACEBOOK_CLIENT_SECRET
 };
 
 module.exports = { config }

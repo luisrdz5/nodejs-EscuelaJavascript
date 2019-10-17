@@ -71,8 +71,7 @@ function authApi(app) {
       next(error);
     }
   });
-  router.post('/sign-provider',
-   validationHandler(createProviderUserSchema),
+  router.post('/sign-provider',validationHandler(createProviderUserSchema),
    async function(req, res, next){
      const { body } = req;
      const {apiKeyToken, ...user}= body;
