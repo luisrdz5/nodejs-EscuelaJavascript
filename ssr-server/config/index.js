@@ -11,7 +11,9 @@ const config = {
   TwitterConsumerSecret:process.env.TWITTER_CONSUMER_SECRET,
   sessionSecret:process.env.SESSION_SECRET,
   facebookClientId:process.env.FACEBOOK_CLIENT_ID,
-  facebookClientSecret:process.env.FACEBOOK_CLIENT_SECRET
+  facebookClientSecret:process.env.FACEBOOK_CLIENT_SECRET,
+  linkedinClientId:process.env.LINKEDIN_CLIENT_ID,
+  linkedinClientSecret:process.env.LINKEDIN_CLIENT_SECRET
 };
 
 module.exports = { config }
