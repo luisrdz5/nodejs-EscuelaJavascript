@@ -9,6 +9,10 @@ const { movieIdSchema } = require('../utils/schemas/movies');
 const { userIdSchema } = require('../utils/schemas/users');
 const { createUserMovieSchema } = require('../utils/schemas/userMovies');
 
+const bodyParser = require('body-parser')
+
+
+
 //JWT strategy
 require('../utils/auth/strategies/jwt');
 
@@ -40,7 +44,8 @@ function userMoviesApi(app) {
   router.post('/',  
     passport.authenticate('jwt', { session: false }), 
     scopesValidationHandler(['create:user-movies']),
-    validationHandler(createUserMovieSchema), async function (req, res, next ){
+    validationHandler(createUserMovieSchema), 
+    async function (req, res, next ){
     const { body: userMovie }= req;
     try{
       const createdUserMovieId = await userMoviesService.createUserMovie({
