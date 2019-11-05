@@ -9,10 +9,6 @@ const { movieIdSchema } = require('../utils/schemas/movies');
 const { userIdSchema } = require('../utils/schemas/users');
 const { createUserMovieSchema } = require('../utils/schemas/userMovies');
 
-const bodyParser = require('body-parser')
-
-
-
 //JWT strategy
 require('../utils/auth/strategies/jwt');
 
@@ -22,13 +18,13 @@ function userMoviesApi(app) {
 
   const userMoviesService = new UserMoviesService();
   router.get(
-    '/',
+    '/:userId',
     passport.authenticate('jwt', { session: false }),
     scopesValidationHandler(['read:user-movies']),
-    validationHandler({ userId: userIdSchema }, 'query'),
-    async function(req, res, next) {
-      const { userId } = req.query;
-
+    validationHandler({ userId: userIdSchema }, 'params'),
+    async function(req, res, next) { 
+      const { userId } = req.params;
+      console.log(userId);
       try {
         const userMovies = await userMoviesService.getUserMovies({ userId });
         res.status(200).json({
