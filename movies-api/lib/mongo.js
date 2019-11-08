@@ -55,6 +55,19 @@ class MongoLib{
             return db.collection(collection).deleteOne({ _id: ObjectId(id)});
         }).then(() => id)
     }
+    deleteUserMovie(collection, userMovieId, userId){
+        return this.connect().then(db => {
+            const result = db.collection(collection).deleteOne({ $and: [{ "movieId": userMovieId}, {"userId": userId}]});
+            return result
+        })
+        .then(result => {
+            console.log(`Deleted ${result} item.`);
+        })
+        .then(() => userMovieId)
+        .catch((err) => {
+            console.log(err);
+        })
+    }
 }
 module.exports = MongoLib;
 
