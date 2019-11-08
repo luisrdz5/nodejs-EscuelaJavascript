@@ -60,9 +60,6 @@ class MongoLib{
             const result = db.collection(collection).deleteOne({ $and: [{ "movieId": userMovieId}, {"userId": userId}]});
             return result
         })
-        .then(result => {
-            console.log(`Deleted ${result} item.`);
-        })
         .then(() => userMovieId)
         .catch((err) => {
             console.log(err);
