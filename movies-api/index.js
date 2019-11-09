@@ -10,16 +10,16 @@ const userMoviesApi = require('./routes/userMovies.js');
 
 const { logErrors, errorHandler, wrapErrors } = require('./utils/middleware/errorHandlers')
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
-const morgan = require('morgan');
-const fs = require('fs')
-const path = require('path')
-const accessLogStream = fs.createWriteStream(path.join('./', 'access.log'), { flags: 'a' });
+//const morgan = require('morgan');
+//const fs = require('fs')
+//const path = require('path')
+//const accessLogStream = fs.createWriteStream(path.join('./', 'access.log'), { flags: 'a' });
 const responseTime = require('response-time')
 
 app.use(express.json());
 app.use(helmet());
 //Saving logs 
-app.use(morgan('combined', { stream: accessLogStream }));
+//app.use(morgan('combined', { stream: accessLogStream }));
 app.use(responseTime());
 //procesamos las rutas
 authApi(app);

@@ -24,7 +24,6 @@ function userMoviesApi(app) {
     validationHandler({ userId: userIdSchema }, 'params'),
     async function(req, res, next) { 
       const { userId } = req.params;
-      console.log(userId);
       try {
         const userMovies = await userMoviesService.getUserMovies({ userId });
         res.status(200).json({
