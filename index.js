@@ -26,6 +26,12 @@ authApi(app);
 moviesApi(app);
 userMoviesApi(app);
 
+app.get('/', (req, res) => {
+  let userInfo = req.header("user-agent");
+  res.send(`New UserInfo: ${userInfo}`);
+});
+
+
 // Catch 404
 app.use(notFoundHandler);
 //errors middleware
