@@ -35,7 +35,6 @@ function authApi(app) {
             next(error);
           }
           const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
-
           if (!apiKey) {
             next(boom.unauthorized());
           }
