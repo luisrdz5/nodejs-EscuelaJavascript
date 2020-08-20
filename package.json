@@ -42,7 +42,7 @@
   "dependencies": {
     "@hapi/boom": "^7.4.3",
     "@hapi/joi": "^15.1.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
